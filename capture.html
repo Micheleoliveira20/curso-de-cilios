@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Dimensões e Resolução</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Captura de Dimensões e Resolução</h1>
+    <p>Esta página captura a largura, altura e resolução atual do seu dispositivo.</p>
+    <div id="result">Carregando...</div>
+
+    <script>
+        function captureValues() {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var dpr = window.devicePixelRatio;
+            var dppx = dpr * 96; // Convertendo DPR para DPPX
+
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = `
+                Largura: ${width}px<br>
+                Altura: ${height}px<br>
+                Resolução: ${dppx.toFixed(2)}dppx (${dpr.toFixed(2)}x)
+            `;
+        }
+
+        // Captura imediatamente ao carregar a página
+        captureValues();
+
+        // Captura novamente se a janela for redimensionada
+        window.addEventListener('resize', captureValues);
+    </script>
+</body>
+</html>
